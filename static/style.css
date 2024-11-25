@@ -36,7 +36,7 @@ h2{
     font-weight: normal;
 }
 
-h3{
+#not-bold{
     margin-top: 30px;
     color: #1d1d1d;
     font-style: normal;
@@ -118,4 +118,86 @@ input[type="submit"] {
 #predictNextButton{
     background-color: #4CAF50;
     margin-top: 10px;
+}
+
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scrolling if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Modal content */
+.modal-content {
+    background-color: #fff6f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 40%;
+}
+
+.modal-header{                
+    display: flex;               /* Use flexbox to arrange text horizontally */
+    align-items: center;         /* Vertically align the text */
+    justify-content: center;
+    width: 100%;                 /* Ensure full width */
+    position: relative;          /* Create a stacking context for z-index */
+}
+
+.modal-image {
+    position: absolute;          /* Position the image behind the text */
+    top: 0;                      /* Align image to the top of the header */
+    left: 0;                     /* Align image to the left of the header */
+    width: 10%;                 /* Make image fill the header */
+    height: auto;                /* Make image fill the header */
+    object-fit: cover;           /* Ensure image covers the area without distortion */
+    z-index: 2;                 /* Send image behind the text */
+}
+
+.modal-image-right {
+    position: absolute;
+    width: 60px;                /* Set a fixed width for the image */
+    height: auto;               /* Maintain the aspect ratio */
+    border-radius: 50%;         /* Optional: make the image circular */
+    top: 0;                      /* Align image to the top of the header */
+    right: 0;
+    left: auto;
+    z-index: 2;   
+}
+
+.modal-header h1{
+        margin: 0;                   /* Remove default margin */
+        text-align: center;          /* Ensure text is centered */
+        color: black;                /* Make sure the text is visible on the image */
+        font-size: 2rem;             /* Adjust size as needed */
+    
+}
+
+.modal-content h2 {
+    margin: 0 0 10px;
+}
+
+.modal-content button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#closeModal{
+    background-color: #4CAF50;
 }

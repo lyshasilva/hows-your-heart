@@ -93,13 +93,45 @@
     </form>
 </div>
 
-<h3>PREDICTION: </h3>
+<h3 id="not-bold">PREDICTION: </h3>
 <div style="display: flex; flex: row;">
     <div id="result" style="display: block;">
         <!-- Result will be displayed here -->
     </div>
     <div id="button_holder">
         <button id="predictNextButton" style="display: none;" onclick="predictNext()">Predict Next</button>
+    </div>
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <!-- Image on the left side of the text -->
+            <img src="../static/heart-float.png" alt="Heart Health Image" class="modal-image">
+            <h1 id="modal-title">How's Your Heart?</h1>
+            <img src="../static/heart-float.png" alt="Heart Health Image" class="modal-image-right">
+        </div>
+        <br>
+            <p>Know your heart today! </p>
+            <p>Predict if you have heart disease by filling out this form using 11 key health metrics.</p>
+        <br>
+        <h3 style="font-style: bold;"> About the Model</h3>
+        <p> We use the CatBoost classifier trained on the Heart Failure Dataset (Fedesoriano, 2021), 
+            achieving 88% accuracy, 87% precision, and 92% recall.</p>
+           
+           <!--<p>
+                For more details, click the (?) button at the top right of the page.
+           </p>
+           --> 
+        <br>
+        <h3 style="font-style: bold; color: maroon"> NOTE</h3>
+        <p>While this model provides a valuable risk assessment,
+             it is not a substitute for professional medical advice. 
+             Always consult with a healthcare professional for a comprehensive evaluation.
+        </p>
+        
+        
+        <button id="closeModal">Got it!</button>
     </div>
 </div>
 
@@ -138,4 +170,17 @@
     function predictNext() {
         // Refresh the page to allow for a new prediction
         window.location.reload();}
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+
+        // Show the modal when the page loads
+        modal.style.display = 'flex';
+
+        // Hide the modal when the "Got it!" button is clicked
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    });
 </script>
