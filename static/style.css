@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full height of the viewport */
+    display: flex; /* Enable flexbox layout */
+    flex-direction: column; /* Arrange elements in a column */
+    justify-content: center; /* Vertically center elements */
+    align-items: center; /* Horizontally center elements */
+    text-align: center; /* Center the text within elements */
+    overflow: hidden;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('heart_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; /* Lower the opacity of the background image */
+    z-index: -1; /* Place the image behind content */
+}
+
+
+h1 {
+    color: #1d1d1d;
+    margin-bottom: 2px;
+}
+h2{
+    margin-top: 2px;
+    color: #1d1d1d;
+    font-style: normal;
+    font-weight: normal;
+}
+
+h3{
+    margin-top: 30px;
+    color: #1d1d1d;
+    font-style: normal;
+    font-weight: normal;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+form {
+
+    width: 80vw; 
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+
+}
+
+#form-container{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+
+
+select{
+    margin-left: 19.8px;
+    margin-right: 20px;
+    width: 33.2vw;
+    height: 37px;
+}
+input{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 33vw;
+    height: 30px;
+}
+
+label{
+    
+    margin-bottom: 2px;
+}
+
+
+input[type="submit"] {
+    grid-column: span 2; /* Make the submit button span across both columns */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Add some space above the button */
+    justify-self: center; /* Center the button horizontally */
+}
+
+#result{
+    border: 1px dashed #ccc;
+     padding: 10px;
+      text-align: center;
+      width: 10rem;
+}
+
+#button_holder{
+    border: 1px dashed #ccc;
+     padding: 10px;
+      width: 10rem;
+      margin-left: 4px;
+}
+
+#predictNextButton{
+    background-color: #4CAF50;
+    margin-top: 10px;
+}

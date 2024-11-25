@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How's Your Heart?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="../static/flavicon.png" type="png">
+</head>
+<body>
+    <div id="background"></div>
+    <h1>How's Your Heart?</h1>
+    <h2>Prediction of Heart Disease Presence</h2>
+    <br>
+    
+    <form id="form" onsubmit="submitForm(event)">
+        <div id="form-container">
+        <div id="form-left">
+            <label for="Age">Age:</label><br>
+            <input type="number" id="input1" name="input1" required><br><br>
+        
+            <label for="input2">Sex:</label><br>
+            <select id="input2" name="input2" required>
+                <option value="" style="font-style: italic; text-align: center;" disabled selected>Select your Sex</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select><br><br>
+        
+            <label for="input3">Chest Pain Type:</label><br>
+            <select id="input3" name="input3" required>
+                <option value="" style="font-style: italic; text-align: center;" disabled selected>Select your Chest Pain Type</option>
+                <option value="3">Typical Angina</option>
+                <option value="1">Atypical Angina</option>
+                <option value="2">Non-Anginal Pain</option>
+                <option value="0">Asymptomatic</option>
+            </select>
+                <br><br>
+        
+            <label for="input6">Fasting Blood Pressure:</label><br>
+            <select id="input6" name="input6" required>
+                <option value="" style="font-style: italic; text-align: center;" disabled selected>Select your Fasting Blood Pressure</option>
+                <option value="0">Below or Equal to 120 mg/dl (milligrams per deciliter)</option>
+                <option value="1">Above 120 mg/dl (milligrams per deciliter)</option>
+            </select><br><br>
+
+            <label for="input7">Resting Electrocardiogram (ECG):</label><br>
+            <select id="input7" name="input7" required>
+                <option value="" style="font-style: italic; text-align: center;" disabled selected>Select your Resting ECG</option>
+                <option value="1">Normal</option>
+                <option value="2">Having ST-T wave abnormality</option>
+                <option value="0">Showing probable or definite Left Ventricular Hypertrophy (LVH)</option>
+            </select><br><br>
+
+             <label for="input9">Exercise-Induced Angina:</label><br>
+            <select id="input9" name="input9" required>
+                <option value="" style="font-style: italic; text-align: center;" disabled selected>Select the appropriate option</option>
+                <option value="1">Experienced chest pain during physical exercise</option>
+                <option value="0">Did not experience chest pain during physical exercise</option>
+            </select><br><br>
+
+            
+        </div>
+        <div id="form-right">
+        
+            <label for="input11">ST Slope on an ECG at the peak of exercise:</label><br>  
+            <select id="input11" name="input11" required>
+                <option value="" style="font-style: italic; text-align: center;" disabled selected>Select ST Slope</option>
+                <option value="2">Upsloping</option>
+                <option value="1">Flat</option>
+                <option value="0">Downsloping</option>
+            </select><br><br>
+
+            <label for="input4">Resting Blood Ressure in milliliters of Mercury (mm Hg):</label><br>
+            <input type="number" step="any" id="input4" name="input4" required><br><br>
+        
+            <label for="input5">Cholesterol in milligrams per deciliter (mm/dl):</label><br>
+            <input type="number" step="any"id="input5" name="input5" required><br><br>
+        
+            <label for="input8">Maximum Heart Rate (range: 60-202):</label><br>
+            <input type="number" id="input8" name="input8" required min="60" max="202"><br><br>
+        
+           
+        
+            <label for="input10">Old Peak in millimeters (mm):</label><br>
+            <input type="number" step="any" id="input10" name="input10" required><br><br>
+        
+            
+
+            <input type="submit" value="Submit">
+        </div>
+    </div>
+    
+    </form>
+</div>
+
+<h3>PREDICTION: </h3>
+<div style="display: flex; flex: row;">
+    <div id="result" style="display: block;">
+        <!-- Result will be displayed here -->
+    </div>
+    <div id="button_holder">
+        <button id="predictNextButton" style="display: none;" onclick="predictNext()">Predict Next</button>
+    </div>
+</div>
+
+    
+    <!--<button id="alertButton">Click Me!</button>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>-->
+</body>
+</html>
+
+
+<script>
+    async function submitForm(event) {
+        event.preventDefault(); // Prevent page reload
+
+        // Collect form data
+        const formData = new FormData(document.getElementById('form'));
+
+        // Send the data to the backend
+        const response = await fetch('/predict', {
+            method: 'POST',
+            body: formData
+        });
+
+        // Parse the response
+        const result = await response.json();
+
+        // Display the result
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = result.error ? `Error: ${result.error}` : `${result.prediction}`;
+
+            // Show the Predict Next button
+            const predictNextButton = document.getElementById('predictNextButton');
+        predictNextButton.style.display = 'inline-block';
+    }
+    function predictNext() {
+        // Refresh the page to allow for a new prediction
+        window.location.reload();}
+</script>
